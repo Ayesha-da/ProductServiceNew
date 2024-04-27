@@ -1,6 +1,7 @@
 package com.example.productservice.controllers;
 
 import com.example.productservice.models.Product;
+import com.example.productservice.services.ProductService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -9,10 +10,16 @@ import java.util.List;
 @RestController
 @RequestMapping("/product")
 public class ProductController {
+   private ProductService producService;
 
+   ProductController(ProductService productService){
+       this.producService=productService;
+   }
     @GetMapping("/{id}")
-    public Product getProductId(@PathVariable("id") Long id){
-        return new Product();
+    public Product getProducBytId(@PathVariable("id") Long id){
+
+       return producService.getProducBytId(id);
+
     }
 
     @GetMapping()
